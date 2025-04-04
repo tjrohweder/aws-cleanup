@@ -1,0 +1,72 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Schedule automatic deletion of CloudFormation stacks
+
+Metadata:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: Input configuration
+        Parameters:
+          - TTL
+    ParameterLabels:
+      TTL:
+        default: Time-to-live in minutes
+
+Parameters:
+  TTL:
+    Type: Number
+    Description: Time-to-live in minutes for the stacks.
+
+Resources:
+  DeleteCFNLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ["lambda.amazonaws.com"]
+            Action: "sts:AssumeRole"
+      Path: "/"
+      Policies:
+        - PolicyName: lambda_policy
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - logs:CreateLogGroup
+                  - logs:CreateLogStream
+                  - logs:PutLogEvents
+                  - cloudformation:DeleteStack
+                  - cloudformation:DescribeStacks
+                  - cloudformation:ListStacks
+                Resource: "*"
+
+  DeleteCFNLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: DeleteOldCFNStacks
+      CodeUri: ./lambda_function/
+      Handler: lambda_function.handler
+      Runtime: python3.13
+      Timeout: 10
+      Role: !GetAtt DeleteCFNLambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          ttl_minutes: !Ref TTL
+      Events:
+        ScheduledEvent:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+            Enabled: true
+
+  PermissionForDeleteCFNLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref DeleteCFNLambda
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
