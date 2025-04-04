@@ -33,7 +33,7 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 - `ttl_minutes`: The number of minutes before a CloudFormation stack should be deleted. This is set through the `TTL` parameter in the template.
 
 ## Lambda Function Code
-The Lambda function is located in `lambda_function/lambda_function.py` and is responsible for:
+The Lambda function is located in `src/lambda.py` and is responsible for:
 - Listing all CloudFormation stacks.
 - Filtering stacks based on naming patterns and age.
 - Deleting stacks older than the defined TTL.
