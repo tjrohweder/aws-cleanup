@@ -44,9 +44,3 @@ To remove the deployed resources, run:
 sam delete
 ```
 
-## License
-This project is licensed under the MIT License.
-
-## Author
-[Your Name]
-
