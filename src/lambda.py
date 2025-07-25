@@ -19,11 +19,11 @@ def delete_stacks(ttl_minutes):
         if any(pattern in stack_name for pattern in patterns) and stack_creation_time > delete_threshold:
             try:
                 cfn.delete_stack(StackName=stack_name)
-                print(f"Deleted stack: {stack_name}")
+                print(f'Deleted stack: {stack_name}')
             except Exception as e:
-                print(f"Failed to delete stack: {stack_name}, Error: {str(e)}")
+                print(f'Failed to delete stack: {stack_name}, Error: {str(e)}')
 
-    return "SUCCESS"
+    return 'SUCCESS'
 
 def handler(event, context):
     ttl_minutes = int(os.environ['ttl_minutes'])
