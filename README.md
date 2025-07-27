@@ -13,16 +13,16 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 - Python 3.13
 
 ## Deployment Instructions
-1. Clone the repository:
+1. Clone the repository
    ```sh
    git clone <repository-url>
    cd <repository-folder>
    ```
-2. Build the SAM application:
+2. Build the SAM applications
    ```sh
    sam build
    ```
-3. Deploy the application:
+3. Deploy the application
    ```sh
    sam deploy --guided
    ```
@@ -32,7 +32,7 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 - `ttl_minutes`: The number of minutes before a CloudFormation stack should be deleted. This is set through the `TTL` parameter in the template.
 
 ## Cleanup
-To remove the deployed resources, run:
+Remove the deployed resources
 ```sh
 sam delete
 ```
