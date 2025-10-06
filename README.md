@@ -12,11 +12,11 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 - AWS SAM CLI
 - Python 3.13
 
-## Deployment Instructions
+## Deployment instructions
 1. Clone the repository
    ```sh
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone git@github.com:tjrohweder/aws-cleanup.git
+   cd aws-cleanup
    ```
 2. Build the SAM applications
    ```sh
