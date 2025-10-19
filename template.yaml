@@ -18,6 +18,10 @@ Parameters:
     Type: Number
     Description: Time-to-live in minutes for the stacks.
 
+  Interval:
+    Type: Number
+    Description: Lambda function execution interval
+
 Resources:
   DeleteCFNLambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -61,7 +65,7 @@ Resources:
         ScheduledEvent:
           Type: Schedule
           Properties:
-            Schedule: rate(5 minutes)
+            Schedule: !Sub rate(${Interval} minutes)
             Enabled: true
 
   PermissionForDeleteCFNLambda:
