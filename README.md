@@ -8,8 +8,8 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 - **Amazon EventBridge**: Triggers the Lambda function.
 
 ## Requirements
-- AWS CLI
-- AWS SAM CLI
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
 - Python 3.13
 
 ## Deployment instructions
