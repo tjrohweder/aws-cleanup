@@ -49,8 +49,8 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: DeleteOldCFNStacks
-      CodeUri: ./lambda_function/
-      Handler: lambda_function.handler
+      CodeUri: ./src/
+      Handler: lambda.handler
       Runtime: python3.13
       Timeout: 10
       Role: !GetAtt DeleteCFNLambdaExecutionRole.Arn
