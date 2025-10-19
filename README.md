@@ -14,25 +14,44 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 
 ## Deployment instructions
 1. Clone the repository
-   ```sh
+   ```bash
    git clone git@github.com:tjrohweder/aws-cleanup.git
    cd aws-cleanup
    ```
-2. Build the SAM applications
+---
+
+2. Edit the **DeleteCFNLambdaExecutionRole** located at  `template.yaml` and adjust the lambda permissions according to your needs
+```bash
+Action:
+  - logs:CreateLogGroup
+  - logs:CreateLogStream
+  - logs:PutLogEvents
+  - cloudformation:DeleteStack
+  - cloudformation:DescribeStacks
+  - cloudformation:ListStacks
+Resource: "*"
+```
+---
+
+3. Build the SAM application
    ```sh
    sam build
    ```
-3. Deploy the application
-   ```sh
+---
+
+4. Deploy the application
+   ```bash
    sam deploy --guided
    ```
-   Follow the prompts to configure parameters such as TTL.
+---
+
 
 ## Environment Variables
 - `ttl_minutes`: The number of minutes before a CloudFormation stack should be deleted. This is set through the `TTL` parameter in the template.
+---
 
 ## Cleanup
-Remove the deployed resources
-```sh
+Remove deployed resources
+```bash
 sam delete
 ```
