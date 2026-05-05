@@ -10,7 +10,7 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
 ## Requirements
 - [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - [AWS SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html)
-- Python 3.13
+- Python 3.13 or higher
 
 ## Deployment instructions
 1. Clone the repository
@@ -20,7 +20,7 @@ This AWS Serverless Application Model (SAM) template defines a Lambda function t
    ```
 ---
 
-2. Edit the **DeleteCFNLambdaExecutionRole** located at  `template.yaml` and adjust the lambda permissions according to your needs
+2. Edit the **DeleteCFNLambdaExecutionRole** located at `template.yaml` and adjust the lambda permissions according to your needs
 ```bash
 Action:
   - logs:CreateLogGroup
@@ -34,7 +34,7 @@ Resource: "*"
 ---
 
 3. Build the SAM application
-   ```sh
+   ```bash
    sam build
    ```
 ---
